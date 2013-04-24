@@ -1,0 +1,57 @@
+{% extends "base_url.html" %}
+
+{% block content %}
+<section>
+	{% if posts %}
+		{% for post in posts %}
+			<article class = 'bl_post'>
+				<div class = 'blog_empty'>
+				</div>
+				<aside class = 'bl_post_aside' >			
+					<div class = 'blog_date'>
+						<p>{{post.date_created | date_expand | safe }}</p>		
+					</div>
+				</aside>
+				<div class = 'main_msg'>
+					<a href = "{{ url_for('blog_module.blog_single_post',post_key = post.key.id() )}}">		<h2>{{post.title}}</h2>
+					</a>
+					<p>	
+						
+					{% filter markdown %} 
+								{{post.entry | safe }} 
+							{% endfilter %}
+
+					</p>
+				</div>
+			</article>
+			
+		{% endfor %}	
+	{% else %}
+		<p> There are currently no blog entries</p>
+	{%  endif  %}			
+</section>
+
+<footer>
+<div class='footer'>
+	{% if prev_curs %}
+		{% if prev_curs == 'MainPage' %}
+			<div id = 'prev' class='click_button_sm'>
+				<a href="{{ url_for('blog_module.blog_main', curs = None )}}"> Prev Page</a>	
+			</div>
+		{% else %}
+			<div id = 'prev' class='click_button_sm'>
+				<a href="{{ url_for('blog_module.blog_main', curs = prev_curs )}}"> Prev Page</a>	
+			</div>
+		{% endif %}	
+	
+	{% endif %}
+	{% if next_curs %}	
+		<div id = 'next' class='click_button_sm'>
+		<a href="{{ url_for('blog_module.blog_main', curs = next_curs )}}"> Next Page</a>
+		</div>
+	{% endif %}	
+</div>	
+</footer>
+
+
+{% endblock %}

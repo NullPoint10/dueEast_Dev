@@ -1,0 +1,36 @@
+{% extends "base_url.html" %}
+
+{% block content %}
+
+<section>
+	<div class = 'main_msg'>
+		{% with messages = get_flashed_messages() %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
+		{% endwith %}
+
+		<div class='click_button_lr'>
+			<a class='add' href=" {{ url_for('admin_module.admin_blog_add' )}}"> Add New Blog Post</a> 
+		</div>
+		
+		{% if posts %}
+			{% for post in posts %}
+				<div class = 'bl_list'>
+					<div class='click_button_sm'>
+						<a class = 'edit' href=" {{ url_for('admin_module.admin_blog_edit', blog_key = post.key.id()  )}}">  Edit</a>
+					</div>
+					<div class='click_button_sm'>
+						<a class = 'delete' href=" {{ url_for('admin_module.admin_blog_delete', blog_key = post.key.id()  )}}">  Delete</a>
+					</div> 
+					<p>{{post.date_created}} -- {{post.title}}</p> 
+				</div>
+			{% endfor %}
+		{% else %}
+			<p> There are currently no blog entries</p>
+		{%  endif  %}	
+
+	</div>	
+</section>
+
+{% endblock %}

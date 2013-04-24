@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+	<head id="dueEAST" >
+		<meta charset="utf-8">
+		<title>dueEAST</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/dE_stylesheet.css')}}" type="text/css" />
+		<link rel="SHORTCUT ICON" href="{{url_for('static', filename='images/Logo32.png')}}" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+		
+		<script  src="{{url_for('static', filename='js/d3.v3.min.js')}}" type="text/javascript"></script>
+		<script  src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+             
+	</head>
+        
+        
+	<body>
+
+		<nav id="nav_main">
+			<a href="{{ url_for('blog_module.blog_main')}}"> Blog
+			</a>
+			<a href="{{ url_for('home_module.about_page')}}">About
+			</a>
+		</nav>
+		<header>
+			<a href="{{ url_for('blog_module.blog_main')}}">
+				<img id="header1_logo" src="{{url_for('static', filename='images/LogoAll_300.png')}}" type="image" alt ="Logo" />
+			</a>	
+		</header>
+		
+
+		
+		{% block content %}{% endblock %}
+		
+		
+		
+	</body>
+</html>

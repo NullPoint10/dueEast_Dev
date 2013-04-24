@@ -1,0 +1,29 @@
+{% extends "base_url.html" %}
+
+{% block content %}
+<section>
+
+	<article class = 'bl_post'>
+		<div class = 'blog_empty'>
+		</div>
+		<aside class = 'bl_post_aside' >			
+			<div class = 'blog_date'>
+				<p>{{post.date_created | date_expand | safe }}</p>		
+			</div>
+		</aside>
+		<div class = 'main_msg'>
+			<a href = "{{ url_for('blog_module.blog_single_post', post_key = post.key.id() )}}">
+				<h2>{{post.title}}</h2>
+			</a>
+			<p>	{% filter markdown %} 
+						{{post.entry |safe}} 
+					{% endfilter %}
+			</p>
+		</div>
+	</article>
+					
+</section>
+
+
+
+{% endblock %}

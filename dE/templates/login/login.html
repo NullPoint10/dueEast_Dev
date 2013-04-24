@@ -1,0 +1,29 @@
+{% extends "base_url.html" %}
+
+{% block content %}
+
+<p>This is login page</p>
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		<ul class=flashes>
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endwith %}
+
+
+<div class="form">
+	<form method="POST" class="form">
+		<p class="title"> 	{{ form.username.label }} : {{ form.username }} 	</p>
+		<p class="entry">	{{ form.password.label }} :  {{ form.password }}	</p>
+
+		<p class="submit">	<input type="submit" value="Login" class="button orange">	</p>
+	  
+    </form>
+</div>
+
+
+{% endblock %}

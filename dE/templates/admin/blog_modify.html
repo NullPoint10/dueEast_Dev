@@ -1,0 +1,28 @@
+{% extends "base_url.html" %}
+
+{% block content %}
+
+
+
+<section>
+	<div class = 'main_msg'>
+		<h2> {{msg.title_msg}} </h2>
+		<form method="POST" class="form">
+			{% from "_create_form.html" import create_form %}
+			<dl>
+				{{ create_form(form.date_created) }}
+				{{ create_form(form.title) }}
+				{{ create_form(form.entry) }}
+			</dl>
+			<div class="button">
+				<input type="submit" value="{{msg.button_msg}}">
+			</div>
+			
+		</form>
+	</div>	
+</section>
+
+
+
+		
+{% endblock %}

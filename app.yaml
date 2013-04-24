@@ -1,0 +1,49 @@
+application: dueeast10
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /static/
+  static_dir: dE/static
+
+- url: /robots\.txt
+  static_files: dE/static/robots.txt
+  upload: static/robots.txt
+
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+
+  # JavaScript
+- url: /static/js/(.*\.js)
+  static_files: dE/static/js/\1
+  upload: static/js/(.*\.js)
+
+  # csv
+- url: /static/other/(.*\.csv)
+  static_files: dE/static/other/\1
+  upload: static/other/(.*\.csv)
+
+  # geojson
+- url: /static/other/(.*\.geojson)
+  static_files: dE/static/js/\1
+  upload: static/other/(.*\.geojson)
+
+  # StyleSheets
+- url: /static/css/(.*\.css)
+  static_files: dE/static/css/\1
+  upload: static/css/(.*\.css)
+
+  # Images
+- url: /static/images/(.*\.(gif|png|jpg|jpeg))
+  static_files: dE/static/images/\1
+  upload: dE/static/images/(.*\.(gif|png|jpg|jpeg))
+
+- url: /.*
+  script: runserver.app
+
+
+
+

@@ -1,0 +1,64 @@
+
+
+body            { font-family: 'Source Sans Pro', sans-serif; width: 960px; font-size: 20px; color: rgb(60,60,60)}
+
+header  		{ margin-top: 10px; margin-bottom: 30px;}
+
+#header1_logo	{ height:80px;  border: none;}	
+
+
+#nav_main		{ float:right;}
+#nav_main a		{ margin-right: 20px; color: rgb(50,50,50); font-size: 20px; }
+
+section			{ width: 960px;}
+.bl_post		{ display:inline-block; margin-bottom:30px; width: 960px;}
+h2				{  font-family: 'Vollkorn', serif; font-weight: normal; font-size: 36px; color:rgb(50,50,50); margin-top:6px; margin-bottom:16px;}		
+
+.bl_post_aside 	{ width: 175px;}
+
+
+
+.blog_empty		{ width: 175px; height: 1px; border-top: 3px solid rgb(50,50,50);}
+.blog_date		{ width: 175px; float: left; border-top: 1px solid rgb(50,50,50);}
+.blog_date	p	{ font-family: 'Vollkorn', serif; font-size: 16px; margin-top: 10px;}
+
+.main_msg			{ font-size: 20px; margin-left: 250px; }
+.main_msg > a 		{ text-decoration: none;}		
+.main_msg p			{ line-height:1.6em ; margin-top:0px; }
+.main_msg > ul 		{ list-style-type: square; color: rgb(50,50,50);}
+
+
+.form dl dt				{ float: left; width: 75px; margin-bottom: 5px;}
+.form dl dd				{ margin-bottom: 15px;}
+.form dl dd input		{ width:600px;}
+.form dl dd textarea	{ width:600px; height: 300px;}
+.errors					{ list-style-type: disc; color: rgb(200,51,0); margin:0;}
+
+.bl_list				{ display: block; vertical-align:middle; margin-bottom: 15px}
+.bl_list p				{ margin: 0;}
+a.add:before 		{ content: "\271A "; padding-right:5px; color: rgb(0,250,0);}
+a.edit:before 		{ content: "\270E "; padding-right:2px; color: rgb(200,200,200);}
+a.delete:before 	{ content: "\2718 "; padding-right:2px; color: rgb(250,0,0);}
+
+.click_button_sm 	{ float: left;  font-size: 12px; margin-right: 15px; padding: 0.25em 0.5em; border: 1px solid rgb(50,50,50); text-align: center;}
+.click_button_sm a 	{ text-decoration:none; color: rgb(50,50,50); vertical-align:middle; }
+
+.click_button_lr	{ display: inline-block; font-size: 18px; margin-bottom: 25px; padding: 0.25em 1em; border: 1px solid rgb(50,50,50); text-align: center; }
+.click_button_lr a 	{ text-decoration:none; color: rgb(50,50,50); vertical-align:middle;}
+
+
+footer			{ margin-left:250px; width: 710px; margin-bottom: 30px; display: inline-block;}
+.footer			{ border-top: 1px solid rgb(50,50,50); padding-top: 20px}
+#prev			{ float: left; margin:0px}
+#next			{ float: right; margin:0px}
+
+.div500	       		{ width:500px; height:500px; margin-top: 40px; margin-left: auto; margin-right:auto; box-shadow:0 0 8px rgba(0,0,0,0.5);}
+.controls1			{ box-shadow:0 0 8px rgba(0,0,0,0.5); padding-top: 15px;padding-bottom: 15px; margin-left: auto; margin-right:auto; width:500px; background: rgb(60,60,60); font-size: 14px; text-align: center;}
+.controls2        	{ display: inline-block;}		
+.controls2 label 	{ margin-left:15px; color:rgb(250,250,250); }
+.controls2 input	{ width: 50px;}
+
+#reset_bt			{border: 0.1em solid rgb(25, 25, 25); margin: 5px; width: 75px; height : 50px; }
+
+
+

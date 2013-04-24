@@ -1,0 +1,20 @@
+{% extends "base_url.html" %}
+
+{% block content %}
+
+<section>
+	<div class = 'main_msg'>
+		{% with messages = get_flashed_messages() %}
+
+					{% for message in messages %}
+						<p>{{ message }} 		<a href="{{ url_for('login_module.login_page')}}">Login</a>
+						</p>
+					{% endfor %}
+
+		{% endwith %}
+	
+
+	</div>	
+</section>
+
+{% endblock %}
