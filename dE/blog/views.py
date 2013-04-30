@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, flash, redirect, url_for
 from flask.views import MethodView
 from models import BlogModel
 from google.appengine.datastore.datastore_query import Cursor
+from google.appengine.api import memcache
+import logging
 
 
 POSTS_PER_PAGE = 4
@@ -13,28 +15,37 @@ blog_module = Blueprint("blog_module", __name__, template_folder="templates",sta
 class BlogMain(MethodView):
 	def get(self, curs):
 
-		curs1 = Cursor(urlsafe = curs)
-		query_forward = BlogModel.query().order(-BlogModel.date_created)
-		query_reverse = BlogModel.query().order(BlogModel.date_created)
+		blog_page = memcache.get('main_blog_page')
 		
-		posts, next_curs, next_more = query_forward.fetch_page(POSTS_PER_PAGE, start_cursor=curs1)
-		rev_posts, prev_curs, prev_more = query_reverse.fetch_page(POSTS_PER_PAGE, start_cursor=curs1)
-		
-		
-		if next_curs and next_more:
-			next_curs = next_curs.urlsafe()
+		if blog_page is not None:
+			logging.info('cache hit ----------------')
+			return blog_page
 		else:
-			next_curs = ''	
+			curs1 = Cursor(urlsafe = curs)
+			query_forward = BlogModel.query().order(-BlogModel.date_created)
+			query_reverse = BlogModel.query().order(BlogModel.date_created)
+			
+			posts, next_curs, next_more = query_forward.fetch_page(POSTS_PER_PAGE, start_cursor=curs1)
+			rev_posts, prev_curs, prev_more = query_reverse.fetch_page(POSTS_PER_PAGE, start_cursor=curs1)
+			
+			
+			if next_curs and next_more:
+				next_curs = next_curs.urlsafe()
+			else:
+				next_curs = ''	
 
-		if curs == None:
-			prev_curs = ''	
-		elif prev_curs and prev_more:
-			prev_curs = prev_curs.urlsafe()
-		else:
-			prev_curs = 'MainPage'	
+			if curs == None:
+				prev_curs = ''	
+			elif prev_curs and prev_more:
+				prev_curs = prev_curs.urlsafe()
+			else:
+				prev_curs = 'MainPage'	
 
-		return render_template('blog/blog_main.html', posts=posts, next_curs=next_curs, prev_curs = prev_curs)
-
+			blog_page = render_template('blog/blog_main.html', posts=posts, next_curs=next_curs, prev_curs = prev_curs)
+			if not memcache.add('main_blog_page', blog_page, 86400):
+				logging.error('Memcache set failed.')
+			logging.info('cache miss ----*********---------')	
+			return blog_page
 
 class BlogSinglePost(MethodView):
 	def get(self,post_key):

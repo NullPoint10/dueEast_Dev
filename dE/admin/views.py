@@ -5,6 +5,7 @@ from flask.views import MethodView
 from ..blog.models import BlogModel
 from ..blog.forms import BlogForm
 from google.appengine.api import users
+from google.appengine.api import memcache
 
 import logging
 
@@ -41,6 +42,7 @@ class AdminBlogAdd(MethodView):
 		return render_template('admin/blog_modify.html', form=self.blog_form, msg = msg)
 
 	def post(self):
+		DeleteMemCache()
 		return blog_save(self)
 		
 class AdminBlogEdit(MethodView):
@@ -52,6 +54,7 @@ class AdminBlogEdit(MethodView):
 		return blog_fetch(self, msg, blog_key)
 		
 	def post(self,blog_key):
+		DeleteMemCache()
 		return blog_save(self,blog_key)
 
 class AdminBlogDelete(MethodView):
@@ -63,6 +66,7 @@ class AdminBlogDelete(MethodView):
 		return blog_fetch(self, msg, blog_key)
 		
 	def post(self,blog_key):
+		DeleteMemCache()
 		if blog_key:
 			self.blog_model = BlogModel.get_by_id(blog_key)
 			self.blog_model.key.delete()
@@ -79,7 +83,8 @@ admin_module.add_url_rule('/blog/delete/<int:blog_key>',
 				view_func=AdminBlogDelete.as_view('admin_blog_delete'), methods=['GET','POST'])											
 
 
-
+def DeleteMemCache():
+	memcache.delete('main_blog_page')
 
 def blog_save(self, blog_key=None):
 	if self.blog_form.validate():
