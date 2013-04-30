@@ -14,14 +14,10 @@
 				</aside>
 				<div class = 'main_msg'>
 					<a href = "{{ url_for('blog_module.blog_single_post',post_key = post.key.id() )}}">		<h2>{{post.title}}</h2>
-					</a>
-					<p>	
-						
+					</a>	
 					{% filter markdown %} 
-								{{post.entry | safe }} 
-							{% endfilter %}
-
-					</p>
+							{{post.entry | safe }} 
+					{% endfilter %}
 				</div>
 			</article>
 			

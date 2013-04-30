@@ -1,5 +1,5 @@
 application: dueeast10
-version: 2
+version: 3
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -40,6 +40,14 @@ handlers:
 - url: /static/images/(.*\.(gif|png|jpg|jpeg))
   static_files: dE/static/images/\1
   upload: dE/static/images/(.*\.(gif|png|jpg|jpeg))
+
+
+- url: /gae_mini_profiler/static
+  static_dir: lib/gae_mini_profiler/static
+
+- url: /gae_mini_profiler/.*
+  script: lib.gae_mini_profiler.main.application
+
 
 - url: /.*
   script: runserver.app

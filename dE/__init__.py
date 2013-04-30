@@ -7,6 +7,8 @@ from blog.views import blog_module
 from admin.views import admin_module
 from login.views import login_module
 
+
+
 def create_app(config):    
 	'''This initialises the app and import the custom jinja templates. It also adds support 
 		for Markdown text to HTML syntax.
@@ -14,18 +16,21 @@ def create_app(config):
 	Finally imports the bluerpints and defines the error handling templates
 	
 	'''
-	app = Flask(__name__)
+	app = Flask('dE')
 	app.config.from_object(config)
 	
 	custom_templates(app)
 
 	Markdown(app)
 
+	
+
 	app.register_blueprint(home_module, url_prefix="/")
 	app.register_blueprint(admin_module, url_prefix="/admin")
 	app.register_blueprint(login_module, url_prefix="/login")
 	app.register_blueprint(blog_module, url_prefix="/blog")
-	
+
+
 	@app.errorhandler(404)
 	def page_not_found(e):
 		return render_template('404.html'), 404

@@ -1,5 +1,4 @@
-$(document).ready(function () {
-
+( function () {
 	var width = 500,
 		height = 500;
 		
@@ -281,5 +280,5 @@ $(document).ready(function () {
 		+this.value < linkCount ? delLinks( +this.value ) : addLinks( +this.value );		
 	});
 
-		
-});
+
+}) ()

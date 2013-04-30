@@ -15,10 +15,9 @@
 			<a href = "{{ url_for('blog_module.blog_single_post', post_key = post.key.id() )}}">
 				<h2>{{post.title}}</h2>
 			</a>
-			<p>	{% filter markdown %} 
-						{{post.entry |safe}} 
-					{% endfilter %}
-			</p>
+			{% filter markdown %} 
+				{{post.entry |safe}} 
+			{% endfilter %}
 		</div>
 	</article>
 					

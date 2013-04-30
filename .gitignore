@@ -168,10 +168,12 @@ blinker/
 flask/
 flask_principal/
 flask_wtf/
+gae_mini_profiler/
 jinja2/
 markdown/
 werkzeug/
 wtforms/
+lib/
 
 #ignore settings file which has secret key and password
 settings.py
