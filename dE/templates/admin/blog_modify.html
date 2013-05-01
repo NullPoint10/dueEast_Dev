@@ -9,6 +9,7 @@
 		<h2> {{msg.title_msg}} </h2>
 		<form method="POST" class="form">
 			{% from "_create_form.html" import create_form %}
+			{{ form.csrf_token }}
 			<dl>
 				{{ create_form(form.date_created) }}
 				{{ create_form(form.title) }}

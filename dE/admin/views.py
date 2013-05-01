@@ -34,7 +34,7 @@ class AdminMain(MethodView):
 
 class AdminBlogAdd(MethodView):
 	def __init__(self):
-		self.blog_form = BlogForm(csrf_enabled=False)
+		self.blog_form = BlogForm()
 
 	def get(self):	
 		self.blog_form.date_created.data = datetime.now()
@@ -47,7 +47,7 @@ class AdminBlogAdd(MethodView):
 		
 class AdminBlogEdit(MethodView):
 	def __init__(self):
-		self.blog_form = BlogForm(csrf_enabled=False)
+		self.blog_form = BlogForm()
 
 	def get(self, blog_key):	
 		msg = {'title_msg': 'Edit blog post',  'button_msg' : 'Save Edits'}	
@@ -59,7 +59,7 @@ class AdminBlogEdit(MethodView):
 
 class AdminBlogDelete(MethodView):
 	def __init__(self):
-		self.blog_form = BlogForm(csrf_enabled=False)
+		self.blog_form = BlogForm()
 
 	def get(self, blog_key):	
 		msg = {'title_msg': 'Delete blog post',  'button_msg' : 'Confirm Delete'}	
